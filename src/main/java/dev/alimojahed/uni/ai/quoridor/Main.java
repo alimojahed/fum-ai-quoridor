@@ -1,5 +1,6 @@
 package dev.alimojahed.uni.ai.quoridor;
 
+import dev.alimojahed.uni.ai.quoridor.algorithm.AlphaBetaPruningAlgorithm;
 import dev.alimojahed.uni.ai.quoridor.algorithm.MiniMaxAlgorithm;
 import dev.alimojahed.uni.ai.quoridor.algorithm.TestAlgorithm;
 import dev.alimojahed.uni.ai.quoridor.game.Board;
@@ -13,10 +14,9 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
         Board board = new Board();
 
-
-
-        MiniMaxPlayer white_player = new MiniMaxPlayer("white", 4, 8, board, new MiniMaxAlgorithm());
-        MiniMaxPlayer black_player = new MiniMaxPlayer("black", 4, 0, board, new MiniMaxAlgorithm());
+        //TODO: for using different algorithm you can change the passing algorithm in player constructors
+        MiniMaxPlayer white_player = new MiniMaxPlayer("white", 4, 8, board, new AlphaBetaPruningAlgorithm());
+        MiniMaxPlayer black_player = new MiniMaxPlayer("black", 4, 0, board, new AlphaBetaPruningAlgorithm());
         Set<String> move = new HashSet<String >();
 
         int walls_count = 0;

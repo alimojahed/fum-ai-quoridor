@@ -10,6 +10,7 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 
 
 public abstract class AdversarialAlgorithm {
+
     public String getBestAction(MiniMaxPlayer player, MiniMaxPlayer opponent) {
         double bestActionValue = Double.MIN_VALUE;
         String bestAction = null;
