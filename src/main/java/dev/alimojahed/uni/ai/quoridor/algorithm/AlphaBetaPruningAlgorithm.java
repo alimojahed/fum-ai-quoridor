@@ -12,14 +12,14 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 public class AlphaBetaPruningAlgorithm extends AdversarialAlgorithm{
     @Override
     protected double algorithm(MiniMaxPlayer player, MiniMaxPlayer opponent) {
-        return alphaBetaPruning(player, opponent, player.MAX_DEPTH -1,
+        return alphaBetaPruning(player, opponent, player.MAX_DEPTH,
                 false, -player.INFINITY, player.INFINITY);
     }
 
     private double alphaBetaPruning(MiniMaxPlayer player, MiniMaxPlayer opponent,
                                     double depth, boolean isMaximizingPlayer,
                                     double alpha, double beta) {
-        if (Math.abs(depth) < 0.000001) {
+        if (Math.abs(depth) == 0) {
             return player.evaluate(opponent);
         }
 
@@ -31,8 +31,11 @@ public class AlphaBetaPruningAlgorithm extends AdversarialAlgorithm{
                     Math.min(bestActionValue, alphaBetaPruning(opponent, player, depth - 1, true, alpha, beta))
             );
             player.undo_last_action();
-            alpha = Math.max(alpha, bestActionValue);
-
+            if (isMaximizingPlayer) {
+                alpha = Math.max(alpha, bestActionValue);
+            }else {
+                beta = Math.min(beta, bestActionValue);
+            }
             if (alpha >= beta) {
                 break;
             }
