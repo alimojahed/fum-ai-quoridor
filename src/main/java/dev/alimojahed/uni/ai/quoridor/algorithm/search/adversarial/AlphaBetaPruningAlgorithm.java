@@ -2,6 +2,8 @@ package dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial;
 
 import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 
+import java.util.Collection;
+
 /**
  * @author: alimojahed
  * @date: 05.12.21
@@ -23,15 +25,15 @@ public class AlphaBetaPruningAlgorithm extends AdversarialSearchAlgorithm {
             return player.evaluate(opponent);
         }
 
-        return SimpleAlphaBetaPruningAlgorithm(player, opponent, depth, isMaximizingPlayer, alpha, beta);
+        return simpleAlphaBetaPruningAlgorithm(player, opponent, depth, isMaximizingPlayer, alpha, beta, player.get_legal_actions(opponent));
 
     }
 
-    protected double SimpleAlphaBetaPruningAlgorithm(MiniMaxPlayer player, MiniMaxPlayer opponent,
+    protected double simpleAlphaBetaPruningAlgorithm(MiniMaxPlayer player, MiniMaxPlayer opponent,
                                                      double depth, boolean isMaximizingPlayer,
-                                                     double alpha, double beta) {
+                                                     double alpha, double beta, Collection<String> actions) {
         double bestActionValue = (isMaximizingPlayer ? -1 : 1) * player.INFINITY;
-        for (String action : player.get_legal_actions(opponent)) {
+        for (String action : actions) {
             player.play(action, true);
             bestActionValue = (isMaximizingPlayer ?
                     Math.max(bestActionValue, alphaBetaPruning(opponent, player, depth - 1, false, alpha, beta)) :

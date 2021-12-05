@@ -41,17 +41,17 @@ public class Piece {
 
     @Override
     public String toString() {
-        return "Piece{" +
-                "x=" + x +
-                ", y=" + y +
-                ", state='" + state + '\'' +
-                ", r_side='" + r_side + '\'' +
-                ", u_side='" + u_side + '\'' +
-                ", l_side='" + l_side + '\'' +
-                ", d_side='" + d_side + '\'' +
-                ", is_white_goal=" + is_white_goal +
-                ", is_black_goal=" + is_black_goal +
-                ", is_border_piece=" + is_border_piece +
+        return "{" +
+                x +
+                "," + y +
+                "," + state +
+                "," + r_side +
+                "," + u_side +
+                "," + l_side +
+                "," + d_side +
+                "," + is_white_goal +
+                "," + is_black_goal +
+                "," + is_border_piece +
                 '}';
     }
 }

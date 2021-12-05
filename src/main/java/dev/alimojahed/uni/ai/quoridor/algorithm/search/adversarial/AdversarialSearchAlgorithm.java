@@ -12,18 +12,23 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 public abstract class AdversarialSearchAlgorithm {
 
     public String getBestAction(MiniMaxPlayer player, MiniMaxPlayer opponent) {
-        double bestActionValue = Double.MIN_VALUE;
+        double bestActionValue = -Double.MAX_VALUE;
         String bestAction = null;
         for (String action : player.get_legal_actions(opponent)) {
             player.play(action, true);
 
             double tmpValue = algorithm(player, opponent);
             player.undo_last_action();
+//            System.out.println(tmpValue);
             if (tmpValue > bestActionValue) {
                 bestActionValue = tmpValue;
                 bestAction = action;
             }
         }
+
+        System.out.println(bestAction);
+        System.out.println(bestActionValue);
+
         return bestAction;
     }
 

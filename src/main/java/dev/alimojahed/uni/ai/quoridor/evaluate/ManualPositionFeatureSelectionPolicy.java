@@ -21,10 +21,10 @@ public class ManualPositionFeatureSelectionPolicy implements EvaluatePolicy{
                 w3 = 14.45, w4 = 6.52
          */
         double f1 = player.getPositionFeature();
-        double f2 = player.bfsToGoal() - opponent.bfsToGoal();
+        double f2 = player.bfsToGoal();
         double f3 = 1/player.getPlayerMovesToNextRow();
         double f4 = opponent.getPlayerMovesToNextRow();
-
-        return f1 * 2 + f2 * -4+ f3 * 14.45 + f4 * 6.52;
+        double f5 = opponent.bfsToGoal();
+        return f1 * 3 + f2 * -1 + f3 * 12.45 + f4 * 5.52 + f5 * 1;
     }
 }

@@ -12,8 +12,6 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 public class AlphaBetaPruningWithTranspositionTable extends AlphaBetaPruningAlgorithm{
     private TranspositionTable transpositionTable = new TranspositionTable();
 
-
-
     @Override
     protected double alphaBetaPruning(MiniMaxPlayer player, MiniMaxPlayer opponent, double depth, boolean isMaximizingPlayer, double alpha, double beta) {
         if (transpositionTable.hasItem(player, isMaximizingPlayer, depth)) {
@@ -26,7 +24,8 @@ public class AlphaBetaPruningWithTranspositionTable extends AlphaBetaPruningAlgo
             return evaluate;
         }
 
-        double bestValueAction = SimpleAlphaBetaPruningAlgorithm(player, opponent, depth, isMaximizingPlayer, alpha, beta);
+        double bestValueAction = simpleAlphaBetaPruningAlgorithm(player, opponent, depth,
+                isMaximizingPlayer, alpha, beta, player.get_legal_actions(opponent));
 
         transpositionTable.put(player, isMaximizingPlayer, depth, bestValueAction);
 

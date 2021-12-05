@@ -1,6 +1,7 @@
 package dev.alimojahed.uni.ai.quoridor;
 
 import dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial.AlphaBetaPruningAlgorithm;
+import dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial.AlphaBetaPruningWithForwardPruningAndTTAlgorithm;
 import dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial.AlphaBetaPruningWithTranspositionTable;
 import dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial.TranspositionTable;
 import dev.alimojahed.uni.ai.quoridor.evaluate.ManualPositionFeatureSelectionPolicy;
@@ -17,8 +18,8 @@ public class Main {
         Board board = new Board();
 
         //TODO: for using different algorithm you can change the passing algorithm in player constructors
-        MiniMaxPlayer white_player = new MiniMaxPlayer("white", 4, 8, board, new AlphaBetaPruningWithTranspositionTable(), new ManualPositionFeatureSelectionPolicy());
-        MiniMaxPlayer black_player = new MiniMaxPlayer("black", 4, 0, board, new AlphaBetaPruningWithTranspositionTable(), new ManualPositionFeatureSelectionPolicy());
+        MiniMaxPlayer white_player = new MiniMaxPlayer("white", 4, 8, board, new AlphaBetaPruningWithForwardPruningAndTTAlgorithm(), new ManualPositionFeatureSelectionPolicy());
+        MiniMaxPlayer black_player = new MiniMaxPlayer("black", 4, 0, board, new AlphaBetaPruningWithForwardPruningAndTTAlgorithm(), new ManualPositionFeatureSelectionPolicy());
         Set<String> move = new HashSet<String>();
 
         int walls_count = 0;
