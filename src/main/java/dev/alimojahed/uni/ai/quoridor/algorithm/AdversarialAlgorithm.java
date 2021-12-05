@@ -9,6 +9,23 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
  **/
 
 
-public interface AdversarialAlgorithm {
-    String getBestAction(MiniMaxPlayer player, MiniMaxPlayer opponent);
+public abstract class AdversarialAlgorithm {
+    public String getBestAction(MiniMaxPlayer player, MiniMaxPlayer opponent) {
+        double bestActionValue = Double.MIN_VALUE;
+        String bestAction = null;
+        for (String action : player.get_legal_actions(opponent)) {
+            player.play(action, true);
+
+            double tmpValue = algorithm(player, opponent);
+            player.undo_last_action();
+            if (tmpValue > bestActionValue) {
+                bestActionValue = tmpValue;
+                bestAction = action;
+            }
+        }
+        return bestAction;
+    }
+
+    protected abstract double algorithm(MiniMaxPlayer player, MiniMaxPlayer opponent);
+
 }

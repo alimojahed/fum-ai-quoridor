@@ -9,21 +9,29 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
  **/
 
 
-public class MiniMaxAlgorithm implements AdversarialAlgorithm{
-    @Override
-    public String getBestAction(MiniMaxPlayer player, MiniMaxPlayer opponent) {
-        return null;
-    }
+public class MiniMaxAlgorithm extends AdversarialAlgorithm {
+
 
     private double miniMax(MiniMaxPlayer player, MiniMaxPlayer opponent,
-                                            double depth, boolean isMaximizingPlayer) {
+                           double depth, boolean isMaximizingPlayer) {
         if (Math.abs(depth) < 0.000001) {
             return player.evaluate(opponent);
         }
 
         double bestActionValue = (isMaximizingPlayer ? -1 : 1) * player.INFINITY;
-
-        return 0;
+        for (String action : player.get_legal_actions(opponent)) {
+            player.play(action, true);
+            bestActionValue = (isMaximizingPlayer ?
+                    Math.max(bestActionValue, miniMax(opponent, player, depth - 1, false)) :
+                    Math.min(bestActionValue, miniMax(opponent, player, depth - 1, true))
+            );
+            player.undo_last_action();
+        }
+        return bestActionValue;
     }
 
+    @Override
+    protected double algorithm(MiniMaxPlayer player, MiniMaxPlayer opponent) {
+        return miniMax(player, opponent, player.MAX_DEPTH, false);
+    }
 }

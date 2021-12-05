@@ -12,32 +12,11 @@ import java.util.Set;
  **/
 
 
-public class TestAlgorithm implements AdversarialAlgorithm{
-
+public class TestAlgorithm extends AdversarialAlgorithm{
 
 
     @Override
-    public String getBestAction(MiniMaxPlayer player, MiniMaxPlayer opponent) {
-        double best_action_value = - (player.INFINITY);
-        String best_action = "";
-        Set<String> legal_move = new HashSet<String>();
-        legal_move = player.get_legal_actions(opponent);
-        for (String action : legal_move) {
-            player.play(action, true);
-            if (player.is_winner()){
-                player.undo_last_action();
-                return action;
-            }
-
-            double action_value = player.evaluate(opponent);
-            if (action_value > best_action_value){
-                best_action_value = action_value;
-                best_action = action;
-            }
-
-            player.undo_last_action();
-        }
-
-        return best_action;
+    protected double algorithm(MiniMaxPlayer player, MiniMaxPlayer opponent) {
+        return player.evaluate(opponent);
     }
 }
