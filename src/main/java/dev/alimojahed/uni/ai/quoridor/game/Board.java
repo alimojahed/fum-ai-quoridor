@@ -220,4 +220,16 @@ public class Board {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < ROWS_NUM; i++) {
+            for (int j=0; j < COLS_NUM; j++) {
+                stringBuilder.append(boardMap[i][j].toString());
+            }
+        }
+
+        return stringBuilder.toString();
+    }
 }

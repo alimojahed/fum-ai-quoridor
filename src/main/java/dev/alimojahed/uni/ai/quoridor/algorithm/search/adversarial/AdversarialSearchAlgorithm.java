@@ -1,4 +1,4 @@
-package dev.alimojahed.uni.ai.quoridor.algorithm;
+package dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial;
 
 import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 
@@ -9,7 +9,7 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
  **/
 
 
-public abstract class AdversarialAlgorithm {
+public abstract class AdversarialSearchAlgorithm {
 
     public String getBestAction(MiniMaxPlayer player, MiniMaxPlayer opponent) {
         double bestActionValue = Double.MIN_VALUE;

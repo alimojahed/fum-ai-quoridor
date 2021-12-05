@@ -1,4 +1,4 @@
-package dev.alimojahed.uni.ai.quoridor.algorithm;
+package dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial;
 
 import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 
@@ -9,7 +9,7 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
  **/
 
 
-public class MiniMaxAlgorithm extends AdversarialAlgorithm {
+public class MiniMaxAlgorithm extends AdversarialSearchAlgorithm {
 
     @Override
     protected double algorithm(MiniMaxPlayer player, MiniMaxPlayer opponent) {

@@ -1,6 +1,6 @@
 package dev.alimojahed.uni.ai.quoridor.player;
 
-import dev.alimojahed.uni.ai.quoridor.algorithm.AdversarialAlgorithm;
+import dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial.AdversarialSearchAlgorithm;
 import dev.alimojahed.uni.ai.quoridor.evaluate.EvaluatePolicy;
 import dev.alimojahed.uni.ai.quoridor.game.Board;
 import dev.alimojahed.uni.ai.quoridor.game.Piece;
@@ -9,13 +9,13 @@ import java.util.*;
 
 public class MiniMaxPlayer extends Player {
 
-    private final AdversarialAlgorithm adversarialAlgorithm;
+    private final AdversarialSearchAlgorithm adversarialAlgorithm;
     private final EvaluatePolicy evaluatePolicy;
     public double MAX_DEPTH = 2.0;
     public double INFINITY = 9999.0;
 
     public MiniMaxPlayer(String color, int x, int y, Board board,
-                         AdversarialAlgorithm adversarialAlgorithm,
+                         AdversarialSearchAlgorithm adversarialAlgorithm,
                          EvaluatePolicy evaluatePolicy) {
 
         super(color, x, y, board);

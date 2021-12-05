@@ -18,13 +18,13 @@ public class ManualPositionFeatureSelectionPolicy implements EvaluatePolicy{
                 f1: position feature -> number of rows the player is away from its initial state
                 f3: max-player's moves to next row -> counting number of moves to the next row raised by -1 because we want to maximize it
                 f4: min-player's moves to next row -> counting number of moves to the next row
-                w1 = 0.6, w2 = 0.6001, w3 = 14.45, w4 = 6.52
+                w3 = 14.45, w4 = 6.52
          */
         double f1 = player.getPositionFeature();
         double f2 = player.bfsToGoal() - opponent.bfsToGoal();
         double f3 = 1/player.getPlayerMovesToNextRow();
         double f4 = opponent.getPlayerMovesToNextRow();
 
-        return f1 * 0.6 + f2 * -0.6001 + f3 * 14.45 + f4 * 6.52;
+        return f1 * 2 + f2 * -4+ f3 * 14.45 + f4 * 6.52;
     }
 }

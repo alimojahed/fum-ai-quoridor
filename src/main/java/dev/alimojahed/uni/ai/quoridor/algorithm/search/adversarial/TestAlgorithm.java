@@ -1,9 +1,6 @@
-package dev.alimojahed.uni.ai.quoridor.algorithm;
+package dev.alimojahed.uni.ai.quoridor.algorithm.search.adversarial;
 
 import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author: alimojahed
@@ -12,7 +9,7 @@ import java.util.Set;
  **/
 
 
-public class TestAlgorithm extends AdversarialAlgorithm{
+public class TestAlgorithm extends AdversarialSearchAlgorithm {
 
 
     @Override
