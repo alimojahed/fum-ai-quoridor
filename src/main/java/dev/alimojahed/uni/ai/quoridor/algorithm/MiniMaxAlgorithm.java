@@ -11,6 +11,10 @@ import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 
 public class MiniMaxAlgorithm extends AdversarialAlgorithm {
 
+    @Override
+    protected double algorithm(MiniMaxPlayer player, MiniMaxPlayer opponent) {
+        return miniMax(player, opponent, player.MAX_DEPTH, false);
+    }
 
     private double miniMax(MiniMaxPlayer player, MiniMaxPlayer opponent,
                            double depth, boolean isMaximizingPlayer) {
@@ -30,8 +34,5 @@ public class MiniMaxAlgorithm extends AdversarialAlgorithm {
         return bestActionValue;
     }
 
-    @Override
-    protected double algorithm(MiniMaxPlayer player, MiniMaxPlayer opponent) {
-        return miniMax(player, opponent, player.MAX_DEPTH, false);
-    }
+
 }

@@ -1,27 +1,28 @@
 package dev.alimojahed.uni.ai.quoridor;
 
 import dev.alimojahed.uni.ai.quoridor.algorithm.AlphaBetaPruningAlgorithm;
-import dev.alimojahed.uni.ai.quoridor.algorithm.MiniMaxAlgorithm;
-import dev.alimojahed.uni.ai.quoridor.algorithm.TestAlgorithm;
+import dev.alimojahed.uni.ai.quoridor.evaluate.ManualPositionFeatureSelectionPolicy;
+import dev.alimojahed.uni.ai.quoridor.evaluate.SimpleEvaluatePolicy;
 import dev.alimojahed.uni.ai.quoridor.game.Board;
 import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         Board board = new Board();
 
         //TODO: for using different algorithm you can change the passing algorithm in player constructors
-        MiniMaxPlayer white_player = new MiniMaxPlayer("white", 4, 8, board, new AlphaBetaPruningAlgorithm());
-        MiniMaxPlayer black_player = new MiniMaxPlayer("black", 4, 0, board, new AlphaBetaPruningAlgorithm());
-        Set<String> move = new HashSet<String >();
+        MiniMaxPlayer white_player = new MiniMaxPlayer("white", 4, 8, board, new AlphaBetaPruningAlgorithm(), new ManualPositionFeatureSelectionPolicy());
+        MiniMaxPlayer black_player = new MiniMaxPlayer("black", 4, 0, board, new AlphaBetaPruningAlgorithm(), new ManualPositionFeatureSelectionPolicy());
+        Set<String> move = new HashSet<String>();
 
         int walls_count = 0;
 
-        while (true){
+        while (true) {
             String action = white_player.get_best_action(black_player);
 
             white_player.play(action, false);
@@ -32,7 +33,7 @@ public class Main {
             );
 
 
-            if (white_player.is_winner()){
+            if (white_player.is_winner()) {
                 System.out.println("White player just won with " + white_player.moves_count + " moves!");
                 break;
             }
@@ -49,7 +50,7 @@ public class Main {
                             ", left walls: " + black_player.walls_count
             );
 
-            if (black_player.is_winner()){
+            if (black_player.is_winner()) {
                 System.out.println("Black player just won with " + black_player.moves_count + " moves!");
                 break;
             }

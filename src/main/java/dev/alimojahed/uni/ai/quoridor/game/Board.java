@@ -85,6 +85,15 @@ public class Board {
         return temp;
     }
 
+    public Set<Piece> getNextRowPieces(int rowNumber) {
+        Set<Piece> temp = new HashSet<>();
+
+        for (int i=0; i < COLS_NUM; i++) {
+            temp.add(this.boardMap[rowNumber][i]);
+        }
+
+        return temp;
+    }
 
     public Set<Piece> get_black_goal_pieces(){
         Set<Piece> temp = new HashSet<Piece>();
@@ -157,6 +166,8 @@ public class Board {
         }
         return can_be_reached;
     }
+
+
 
     public void print_map(){
         String VERTICAL_WALL = "\u2503";
