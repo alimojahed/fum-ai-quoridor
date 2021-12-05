@@ -31,18 +31,18 @@ public class Board {
                 if (y == 0) {
                     is_white_goal = true;
                     up_side = "block";
-                    if (x == 4) {
-                        state = "black";
-                    }
+//                    if (x == 4) {
+//                        state = "black";
+//                    }
                 }
                 else if (y == ROWS_NUM - 1) {
                     is_border_piece = true;
                     is_black_goal = true;
                     down_side = "block";
 
-                    if (x == 4) {
-                        state = "white";
-                    }
+//                    if (x == 4) {
+//                        state = "white";
+//                    }
                 }
                 if (x == 0){
                     left_side = "block";

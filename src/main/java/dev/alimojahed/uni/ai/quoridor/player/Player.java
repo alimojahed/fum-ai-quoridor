@@ -18,7 +18,9 @@ public class Player {
     public int initialX;
     public int initialY;
     private Queue<String> actions_logs = null;
-
+    public String lastAction;
+    public boolean firstMove = true;
+    public String parentToThisAction = null;
     public Player(String color, int x, int y, Board board) {
         this.color = color;
         this.x = this.initialX = x;

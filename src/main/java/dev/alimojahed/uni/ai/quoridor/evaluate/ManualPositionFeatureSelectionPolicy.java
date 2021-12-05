@@ -2,6 +2,8 @@ package dev.alimojahed.uni.ai.quoridor.evaluate;
 
 import dev.alimojahed.uni.ai.quoridor.player.MiniMaxPlayer;
 
+import java.util.Random;
+
 /**
  * @author: alimojahed
  * @date: 05.12.21
@@ -25,6 +27,8 @@ public class ManualPositionFeatureSelectionPolicy implements EvaluatePolicy{
         double f3 = 1/player.getPlayerMovesToNextRow();
         double f4 = opponent.getPlayerMovesToNextRow();
         double f5 = opponent.bfsToGoal();
-        return f1 * 3 + f2 * -1 + f3 * 12.45 + f4 * 5.52 + f5 * 1;
+        int numberOfWallsLeftWeight = player.walls_count > 0 ? 1 : 0;
+
+        return (f1 * 2  + f3 * 14.45 + f4 * 6.52) * numberOfWallsLeftWeight + f2 * -5 + f5 * 3;
     }
 }

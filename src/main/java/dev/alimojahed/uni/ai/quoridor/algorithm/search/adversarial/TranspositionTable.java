@@ -25,22 +25,23 @@ public class TranspositionTable {
     }
 
     public double getCachedState(MiniMaxPlayer player, boolean isMaximizingPlayer, double depth) {
-        Item defaultItem = new Item("", 0, 0);
+        Item defaultItem = new Item("", 0);
 
         return items.getOrDefault(hash(player, isMaximizingPlayer, depth), defaultItem).evaluate;
     }
 
     public void put(MiniMaxPlayer player, boolean isMaximizingPlayer, double depth, double evaluate) {
         String key = hash(player, isMaximizingPlayer, depth);
-        items.put(key, new Item(key, depth, evaluate));
+        items.put(key, new Item(key, evaluate));
 
     }
 
     private String hash(MiniMaxPlayer player, boolean isMaximizingPlayer, double depth) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(depth)
+        stringBuilder
                 .append(isMaximizingPlayer)
+                .append(player.walls_count)
                 .append(player.board.toString());
 
         return stringBuilder.toString();
@@ -50,7 +51,6 @@ public class TranspositionTable {
     private class Item {
         String key;
         double evaluate;
-        double depth;
     }
 
 }

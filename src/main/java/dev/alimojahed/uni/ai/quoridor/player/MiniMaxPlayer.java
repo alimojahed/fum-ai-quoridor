@@ -13,6 +13,18 @@ public class MiniMaxPlayer extends Player {
     private final EvaluatePolicy evaluatePolicy;
     public double MAX_DEPTH = 2.0;
     public double INFINITY = 9999.0;
+    public int duplicateActionHappened = 0;
+    public static int duplicateLimit = 2;
+
+
+    public boolean canPerformDuplicateMove() {
+        if (duplicateActionHappened < duplicateLimit) {
+            return true;
+        }
+
+        duplicateActionHappened = 0;
+        return false;
+    }
 
     public MiniMaxPlayer(String color, int x, int y, Board board,
                          AdversarialSearchAlgorithm adversarialAlgorithm,
@@ -114,7 +126,6 @@ public class MiniMaxPlayer extends Player {
             nextRowNumber = y - 1;
         else
             nextRowNumber = y + 1;
-
 
         return bfs(board.getNextRowPieces(nextRowNumber));
     }
